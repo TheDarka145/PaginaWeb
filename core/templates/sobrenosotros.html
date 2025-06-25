@@ -1,118 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre Nosotros</title>
-  {% load static %}
-  <link rel="icon" href="{% static 'img/icono_navegador.png' %}" />
-  <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}" />
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nosotros</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/icono_navegador.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  </head>
 
-<body>
-  <header>
-    <div class="container__menu">
-      <div class="menu">
-        <nav>
-          <ul>
-            <li><a href="{% url 'index' %}"></a></li>
-            <li><a href="{% url 'tienda' %}">Productos</a>
-              <ul>
-                <li><a href="{% url 'tienda' %}">Herramientas Manuales</a></li>
-                <li><a href="{% url 'tienda' %}">Herramientas Eléctricas</a></li>
-                <li><a href="{% url 'tienda' %}">Materiales de Construcción</a></li>
-                <li><a href="{% url 'tienda' %}">Pinturas y Selladores</a></li>
-              </ul>
-            </li>
-            <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
-            <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
-            <li class="search-bar">
-              <input type="text" placeholder="¿Qué buscas?" class="form-control">
-            </li>
+  <body>
+    <header>
+      <div class="container__menu">
+        <div class="menu">
+          <nav>
+            <ul>
+              <li><a href="{% url 'index' %}"></a></li>
+              <li>
+                <a href="{% url 'tienda' %}">Productos</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Manuales</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Eléctricas</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Materiales de Construcción</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Pinturas y Selladores</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
+              <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
+              <li class="search-bar">
+                <input
+                  type="text"
+                  placeholder="¿Qué buscas?"
+                  class="form-control"
+                />
+              </li>
 
-            {% if user.is_authenticated %}
-              <li><a href="{% url 'perfil' %}"></a>
+              {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'perfil' %}"></a>
                 <ul>
                   <li><a href="{% url 'productos' %}">Inventario</a></li>
                   <li><a href="{% url 'cerrar' %}">Cerrar sesión</a></li>
                 </ul>
               </li>
               <li><a href="{% url 'carrito' %}"></a></li>
-            {% else %}
+              {% else %}
               <li><a href="{% url 'login' %}"></a></li>
               <li><a href="{% url 'carrito' %}"></a></li>
-            {% endif %}
-          </ul>
-        </nav>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <!-- Historia de la empresa -->
-    <article>
-      <div class="remember">
-        <img src="https://www.enredandoporlared.com/wp-content/uploads/2016/03/quienesomos.jpg" alt="Historia FERREMAS" />
-        <div class="remember-description">
-          <div class="Bienvenida">
-            <h1>¿Quiénes Somos?</h1>
-            <p>FERREMAS es una distribuidora de herramientas y materiales para la construcción, establecida desde los años 80 en Santiago de Chile. Con más de 40 años de trayectoria, hoy contamos con 4 sucursales en la Región Metropolitana y 3 en regiones, consolidándonos como referentes del rubro ferretero nacional.</p>
+    <main>
+      <article>
+        <div class="remember">
+          <img
+            src="https://www.enredandoporlared.com/wp-content/uploads/2016/03/quienesomos.jpg"
+            alt="Historia FERREMAS"
+          />
+          <div class="remember-description">
+            <div class="Bienvenida">
+              <h1>¿Quiénes Somos?</h1>
+              <p>
+                FERREMAS es una distribuidora de herramientas y materiales para
+                la construcción, establecida desde los años 80 en Santiago de
+                Chile. Con más de 40 años de trayectoria, hoy contamos con 4
+                sucursales en la Región Metropolitana y 3 en regiones,
+                consolidándonos como referentes del rubro ferretero nacional.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="remember">
+          <div class="remember-description">
+            <div class="Bienvenida">
+              <h1>Nuestra Misión</h1>
+              <p>
+                Proveer a nuestros clientes productos de construcción y
+                ferretería de alta calidad, garantizando un servicio eficiente,
+                confiable y profesional, tanto en nuestras tiendas físicas como
+                en nuestro canal online.
+              </p>
+            </div>
+          </div>
+          <img
+            src="https://inmobiliariathv.cl/userfiles/images/mision-vision.png"
+            alt="Misión FERREMAS"
+          />
+        </div>
+      </article>
+
+      <article>
+        <div class="remember">
+          <img
+            src="https://i0.wp.com/blog.socialdiabetes.com/wp-content/uploads/2018/03/team_2.png?fit=1948%2C1468&ssl=1"
+            alt="Equipo FERREMAS"
+          />
+          <div class="remember-description">
+            <div class="Bienvenida">
+              <h1>Nuestro Equipo</h1>
+              <p>
+                Contamos con un equipo humano altamente capacitado:
+                administradores, vendedores, bodegueros y contadores que
+                trabajan coordinadamente para ofrecerte la mejor experiencia de
+                compra y atención personalizada. Gracias a ellos, FERREMAS ha
+                podido crecer y posicionarse como una marca confiable en el
+                sector.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="pie-pagina">
+      <div class="grupo-1">
+        <div class="box">
+          <figure>
+            <a href="#"
+              ><img src="{% static 'img/footer.png' %}" alt="Logo FERREMAS"
+            /></a>
+          </figure>
+        </div>
+        <div class="box">
+          <h2>SOBRE NOSOTROS</h2>
+          <p>
+            FERREMAS es una distribuidora con más de cuatro décadas de
+            experiencia ofreciendo herramientas, materiales eléctricos, pinturas
+            y artículos de seguridad para proyectos de construcción. Trabajamos
+            con marcas líderes como Bosch, Makita, Stanley y Sika.
+          </p>
+        </div>
+        <div class="box">
+          <h2>SÍGUENOS</h2>
+          <div class="red-social">
+            <a href="#"
+              ><img
+                src="{% static 'img/facebook_logo.png' %}"
+                alt="Facebook"
+                width="25"
+                height="25"
+            /></a>
+            <a href="#"
+              ><img
+                src="{% static 'img/ig_logo.png' %}"
+                alt="Instagram"
+                width="25"
+                height="25"
+            /></a>
+            <a href="#"
+              ><img
+                src="{% static 'img/correo_logo.png' %}"
+                alt="Correo"
+                width="25"
+                height="25"
+            /></a>
           </div>
         </div>
       </div>
-    </article>
-
-    <!-- Visión y misión -->
-    <article>
-      <div class="remember">
-        <div class="remember-description">
-          <div class="Bienvenida">
-            <h1>Nuestra Misión</h1>
-            <p>Proveer a nuestros clientes productos de construcción y ferretería de alta calidad, garantizando un servicio eficiente, confiable y profesional, tanto en nuestras tiendas físicas como en nuestro canal online.</p>
-          </div>
-        </div>
-        <img src="https://inmobiliariathv.cl/userfiles/images/mision-vision.png" alt="Misión FERREMAS" />
+      <div class="grupo-2">
+        <small>©2025 <b>FERRAMAS</b> - Todos Los Derechos Reservados</small>
       </div>
-    </article>
-
-    <!-- Equipo -->
-    <article>
-      <div class="remember">
-        <img src="https://www.feram.cl/cdn/shop/files/feram-ferreteria-industrial-preview-2024.jpg?v=1720465123" alt="Equipo FERREMAS" />
-        <div class="remember-description">
-          <div class="Bienvenida">
-            <h1>Nuestro Equipo</h1>
-            <p>Contamos con un equipo humano altamente capacitado: administradores, vendedores, bodegueros y contadores que trabajan coordinadamente para ofrecerte la mejor experiencia de compra y atención personalizada. Gracias a ellos, FERREMAS ha podido crecer y posicionarse como una marca confiable en el sector.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  </main>
-
-  <footer class="pie-pagina">
-    <div class="grupo-1">
-      <div class="box">
-        <figure>
-          <a href="#"><img src="{% static 'img/footer.png' %}" alt="Logo FERREMAS" /></a>
-        </figure>
-      </div>
-      <div class="box">
-        <h2>SOBRE NOSOTROS</h2>
-        <p>FERREMAS es una distribuidora con más de cuatro décadas de experiencia ofreciendo herramientas, materiales eléctricos, pinturas y artículos de seguridad para proyectos de construcción. Trabajamos con marcas líderes como Bosch, Makita, Stanley y Sika.</p>
-      </div>
-      <div class="box">
-        <h2>SÍGUENOS</h2>
-        <div class="red-social">
-          <a href="#"><img src="{% static 'img/facebook_logo.png' %}" alt="Facebook" width="25" height="25" /></a>
-          <a href="#"><img src="{% static 'img/ig_logo.png' %}" alt="Instagram" width="25" height="25" /></a>
-          <a href="#"><img src="{% static 'img/correo_logo.png' %}" alt="Correo" width="25" height="25" /></a>
-        </div>
-      </div>
-    </div>
-    <div class="grupo-2">
-      <small>©2025 <b>FERRAMAS</b> - Todos Los Derechos Reservados</small>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>
