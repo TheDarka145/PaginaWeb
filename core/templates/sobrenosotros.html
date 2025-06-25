@@ -14,7 +14,7 @@
     <header>
       <div class="container__menu">
         <div class="menu">
-          <input type="checkbox" id="check__menu">
+          <input type="checkbox" id="check__menu" />
           <label for="check__menu" id="label__check">
             <i class="icon__menu">☰</i>
           </label>
@@ -58,11 +58,6 @@
               </li>
               <li><a href="{% url 'carrito' %}"></a></li>
               {% else %}
-              <li><a href="{% url 'login' %}"></a></li>
-              <li><a href="{% url 'carrito' %}"></a></li>
-              {% endif %}
-            </ul>
-          </nav>lse %}
               <li><a href="{% url 'login' %}"></a></li>
               <li><a href="{% url 'carrito' %}"></a></li>
               {% endif %}

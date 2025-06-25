@@ -57,8 +57,8 @@
 </style>
 <body>
     <header>
-        <div class="container__menu">
-            <div class="menu">
+      <div class="container__menu">
+        <div class="menu">
           <input type="checkbox" id="check__menu">
           <label for="check__menu" id="label__check">
             <i class="icon__menu">☰</i>
@@ -86,9 +86,11 @@
               <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
               <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
               <li class="search-bar">
-                <form method="GET" class="form-control">
-                  <input type="text" name="buscar" placeholder="¿Qué buscas?" value="{{ request.GET.buscar }}" style="border: none">
-                </form>
+                <input
+                  type="text"
+                  placeholder="¿Qué buscas?"
+                  class="form-control"
+                />
               </li>
               {% if user.is_authenticated %}
               <li>
@@ -105,22 +107,9 @@
               <li><a href="{% url 'carrito' %}"></a></li>
               {% endif %}
             </ul>
-          </nav></li>
-                                <li><a href="{% url 'cerrar' %}">Cerrar sesión</a></li></ul>
-                            </li>
-                            <li><a href="#" id="openPanelLink" style="font-size: 18px; color: #1A5276; text-decoration: none;">
-                                <i class="fas fa-shopping-cart"></i> 
-                            </a></li>
-                        {% else %}
-                            <li><a href="{% url 'login' %}"></a></li>
-                            <li><a href="#" id="openPanelLink" style="font-size: 18px; color: #1A5276; text-decoration: none;">
-                                <i class="fas fa-shopping-cart"></i> 
-                            </a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
+          </nav>
         </div>
+      </div>
     </header>
 
     <div class="currency-selector">

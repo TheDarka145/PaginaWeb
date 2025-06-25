@@ -1,26 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu de los Productos</title>
     {% load static %}
     <link rel="icon" href="{% static 'img/icono_navegador.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
 
     <style>
-      .d{
+      .d {
         font-family: Montserrat, sans-serif;
       }
     </style>
-
-</head>
+  </head>
   <body>
     <header>
       <div class="container__menu">
         <div class="menu">
-          <input type="checkbox" id="check__menu">
+          <input type="checkbox" id="check__menu" />
           <label for="check__menu" id="label__check">
             <i class="icon__menu">☰</i>
           </label>
@@ -71,46 +70,67 @@
           </nav>
         </div>
       </div>
+    </header>
+
     <main class="container">
-      <div class="form-group text-center"> 
+      <div class="form-group text-center">
         <h2>Inventario</h2>
       </div>
 
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Categoria</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Imagen</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for Planta in datos %}
-                    <tr>
-                        <td><a href="{% url 'detalle' Planta.idPlanta %}" class="btn btn-outline-info">{{ Planta.idPlanta }}</a></td>
-                        <td>{{ Planta.nombre }}</td>
-                        <td>{{ Planta.descripcion }}</td>
-                        <td>{{ Planta.categoria }}</td>
-                        <td>${{ Planta.precio }}</td>
-                        <td>{{ Planta.stock }}</td>
-                        <td><img src="{{ Planta.imagen.url }}" style="width: 120px; height: 120px;"></td>
-                        <td><a href="{% url 'modificar' Planta.idPlanta %}" class="btn btn-warning">Actualizar</a></td>
-                        <td><a href="{% url 'eliminar' Planta.idPlanta %}" class="btn btn-danger">Eliminar</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'crear' %}" class="btn btn-success">Agregar Producto</a>
-
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Imagen</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for Planta in datos %}
+          <tr>
+            <td>
+              <a
+                href="{% url 'detalle' Planta.idPlanta %}"
+                class="btn btn-outline-info"
+                >{{ Planta.idPlanta }}</a
+              >
+            </td>
+            <td>{{ Planta.nombre }}</td>
+            <td>{{ Planta.descripcion }}</td>
+            <td>{{ Planta.categoria }}</td>
+            <td>${{ Planta.precio }}</td>
+            <td>{{ Planta.stock }}</td>
+            <td>
+              <img
+                src="{{ Planta.imagen.url }}"
+                style="width: 120px; height: 120px"
+              />
+            </td>
+            <td>
+              <a
+                href="{% url 'modificar' Planta.idPlanta %}"
+                class="btn btn-warning"
+                >Actualizar</a
+              >
+            </td>
+            <td>
+              <a
+                href="{% url 'eliminar' Planta.idPlanta %}"
+                class="btn btn-danger"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'crear' %}" class="btn btn-success">Agregar Producto</a>
     </main>
-    
-    
-</body>
+  </body>
 </html>

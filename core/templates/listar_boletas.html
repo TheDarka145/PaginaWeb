@@ -1,87 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Boletas</title>
-    {% load static %}
-    <link rel="icon" href="{% static 'img/icono_navegador.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .container {
-            max-width: 800px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-      <div class="container__menu">
-        <div class="menu">
-          <input type="checkbox" id="check__menu">
-          <label for="check__menu" id="label__check">
-            <i class="icon__menu">☰</i>
-          </label>
-          <nav>
-            <ul>
-              <li><a href="{% url 'index' %}"></a></li>
-              <li>
-                <a href="{% url 'tienda' %}">Productos</a>
-                <ul>
-                  <li>
-                    <a href="{% url 'tienda' %}">Herramientas Manuales</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'tienda' %}">Herramientas Eléctricas</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'tienda' %}">Materiales de Construcción</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'tienda' %}">Pinturas y Selladores</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
-              <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
-              <li class="search-bar">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista de Boletas</title>
+        {% load static %}
+        <link rel="icon" href="{% static 'img/icono_navegador.png' %}" />
+        <link rel="stylesheet" href="{% static 'css/misEstilos.css' %}" />
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            .container {
+                max-width: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container__menu">
+                <div class="menu">
+                    <input type="checkbox" id="check__menu" />
+                    <label for="check__menu" id="label__check">
+                        <i class="icon__menu">☰</i>
+                    </label>
+                    <nav>
+                        <ul>
+                            <li><a href="{% url 'index' %}"></a></li>
+                            <li>
+                                <a href="{% url 'tienda' %}">Productos</a>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'tienda' %}"
+                                            >Herramientas Manuales</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'tienda' %}"
+                                            >Herramientas Eléctricas</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'tienda' %}"
+                                            >Materiales de Construcción</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'tienda' %}"
+                                            >Pinturas y Selladores</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{% url 'contacto' %}">Contáctanos</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'Nosotros' %}"
+                                    >Sobre Nosotros</a
+                                >
+                            </li>
+                            <li class="search-bar">
+                                <input
+                                    type="text"
+                                    placeholder="¿Qué buscas?"
+                                    class="form-control"
+                                />
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'perfil' %}"></a>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'productos' %}"
+                                            >Inventario</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'listar_boletas' %}"
+                                            >Boletas</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'cerrar' %}"
+                                            >Cerrar sesión</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'carrito' %}"></a></li>
+                            {% else %}
+                            <li><a href="{% url 'login' %}"></a></li>
+                            <li><a href="{% url 'carrito' %}"></a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <h1 class="mb-4">Lista de Boletas</h1>
+
+            <form method="GET" class="mb-4 d-flex">
                 <input
-                  type="text"
-                  placeholder="¿Qué buscas?"
-                  class="form-control"
+                    type="date"
+                    name="fecha_inicio"
+                    class="form-control"
+                    placeholder="Desde"
+                    style="flex: 1; margin-right: 10px"
                 />
-              </li>
-              {% if user.is_authenticated %}
-              <li>
-                <a href="{% url 'perfil' %}"></a>
-                <ul>
-                  <li><a href="{% url 'productos' %}">Inventario</a></li>
-                  <li><a href="{% url 'listar_boletas' %}">Boletas</a></li>
-                  <li><a href="{% url 'cerrar' %}">Cerrar sesión</a></li>
-                </ul>
-              </li>
-              <li><a href="{% url 'carrito' %}"></a></li>
-              {% else %}
-              <li><a href="{% url 'login' %}"></a></li>
-              <li><a href="{% url 'carrito' %}"></a></li>
-              {% endif %}
-            </ul>
-          </nav>
-        </div>
-      </div>
-</header>
+                <input
+                    type="date"
+                    name="fecha_fin"
+                    class="form-control"
+                    placeholder="Hasta"
+                    style="flex: 1"
+                />
+                <button type="submit" class="btn btn-primary ml-2">
+                    Filtrar
+                </button>
+            </form>
 
-    <div class="container">
-        <h1 class="mb-4">Lista de Boletas</h1>
-
-        <form method="GET" class="mb-4 d-flex">
-            <input type="date" name="fecha_inicio" class="form-control" placeholder="Desde" style="flex: 1; margin-right: 10px;">
-            <input type="date" name="fecha_fin" class="form-control" placeholder="Hasta" style="flex: 1;">
-            <button type="submit" class="btn btn-primary ml-2">Filtrar</button>
-        </form>
-
-        {% if boletas %}
+            {% if boletas %}
             <table class="table table-striped table-bordered">
                 <thead class="thead">
                     <tr>
@@ -97,7 +140,13 @@
                         <td>{{ boleta.id_boleta }}</td>
                         <td>${{ boleta.total }}</td>
                         <td>{{ boleta.fechaCompra }}</td>
-                        <td><a href="{% url 'detalle_boleta' boleta.id_boleta %}" class="btn btn-info btn-sm">Ver Detalles</a></td>
+                        <td>
+                            <a
+                                href="{% url 'detalle_boleta' boleta.id_boleta %}"
+                                class="btn btn-info btn-sm"
+                                >Ver Detalles</a
+                            >
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -107,41 +156,58 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     {% if boletas.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1" aria-label="First">
-                                <span aria-hidden="true">&laquo;&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ boletas.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="?page={{ boletas.previous_page_number }}"
+                            aria-label="Previous"
+                        >
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
                     {% endif %}
-                    <li class="page-item disabled"><span class="page-link">Página {{ boletas.number }} de {{ boletas.paginator.num_pages }}</span></li>
+                    <li class="page-item disabled">
+                        <span class="page-link"
+                            >Página {{ boletas.number }} de {{
+                            boletas.paginator.num_pages }}</span
+                        >
+                    </li>
                     {% if boletas.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ boletas.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ boletas.paginator.num_pages }}" aria-label="Last">
-                                <span aria-hidden="true">&raquo;&raquo;</span>
-                            </a>
-                        </li>
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="?page={{ boletas.next_page_number }}"
+                            aria-label="Next"
+                        >
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="?page={{ boletas.paginator.num_pages }}"
+                            aria-label="Last"
+                        >
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
                     {% endif %}
                 </ul>
             </nav>
-        {% else %}
+            {% else %}
             <div class="alert alert-info" role="alert">
                 No hay boletas disponibles.
             </div>
-        {% endif %}
-    </div>
+            {% endif %}
+        </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </html>
