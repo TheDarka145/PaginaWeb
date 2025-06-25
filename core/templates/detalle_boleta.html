@@ -19,40 +19,58 @@
     <header>
       <div class="container__menu">
         <div class="menu">
-            <nav class="">
-                <ul> 
-                    <li> <a href="{% url 'index' %}"></a></li> 
-                    <li> <a href="{% url 'tienda' %}">Productos</a>
-                        <ul>
-                            <li><a href="{% url 'tienda' %}">Herramientas Manuales</a></li>
-                            <li><a href="{% url 'tienda' %}">Herramientas Eléctricas</a></li>
-                            <li><a href="{% url 'tienda' %}">Materiales de Construcción</a></li>
-                            <li><a href="{% url 'tienda' %}">Pinturas y Selladores</a></li>
-                        </ul>
-                    </li> 
-                    <li> <a href="{% url 'contacto' %}">Contactanos</a></li> 
-                    <li> <a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li> 
-                    <li class="search-bar">
-                      <input type="text" placeholder="¿Qué buscas?" class="form-control">
-                    </li>                      
-      
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'perfil' %}"></a>
-                          <ul><li><a href="#">Crear</a></li></ul>
-                          <ul><li><a href="{% url 'productos' %}">Inventario</a></li>
-                          <li><a href="{% url 'listar_boletas' %}">Boletas</a></li>
-                          <li><a href="{% url 'cerrar' %}">Cerrar sesión</a>
-                          </ul>
-                        </li>
-                        <li><a href="{% url 'carrito' %}"></a></li>
-                    {% else %}
-                        <li><a href="{% url 'login' %}"></a></li>
-                        <li><a href="{% url 'carrito' %}"></a></li>
-                    {% endif %}
+          <input type="checkbox" id="check__menu">
+          <label for="check__menu" id="label__check">
+            <i class="icon__menu">☰</i>
+          </label>
+          <nav>
+            <ul>
+              <li><a href="{% url 'index' %}"></a></li>
+              <li>
+                <a href="{% url 'tienda' %}">Productos</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Manuales</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Eléctricas</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Materiales de Construcción</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Pinturas y Selladores</a>
+                  </li>
                 </ul>
-            </nav>
+              </li>
+              <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
+              <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
+              <li class="search-bar">
+                <input
+                  type="text"
+                  placeholder="¿Qué buscas?"
+                  class="form-control"
+                />
+              </li>
+              {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'perfil' %}"></a>
+                <ul>
+                  <li><a href="{% url 'productos' %}">Inventario</a></li>
+                  <li><a href="{% url 'listar_boletas' %}">Boletas</a></li>
+                  <li><a href="{% url 'cerrar' %}">Cerrar sesión</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'carrito' %}"></a></li>
+              {% else %}
+              <li><a href="{% url 'login' %}"></a></li>
+              <li><a href="{% url 'carrito' %}"></a></li>
+              {% endif %}
+            </ul>
+          </nav>
         </div>
-    </header>
+      </div>
+</header>
 
     <div class="container">
         <h1 class="mb-4">Detalle de Boleta #{{ boleta.id_boleta }}</h1>

@@ -5,8 +5,63 @@
   <title>Comprobante de Compra</title>
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
+  <header>
+      <div class="container__menu">
+        <div class="menu">
+          <input type="checkbox" id="check__menu">
+          <label for="check__menu" id="label__check">
+            <i class="icon__menu">☰</i>
+          </label>
+          <nav>
+            <ul>
+              <li><a href="{% url 'index' %}"></a></li>
+              <li>
+                <a href="{% url 'tienda' %}">Productos</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Manuales</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Herramientas Eléctricas</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Materiales de Construcción</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'tienda' %}">Pinturas y Selladores</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
+              <li><a href="{% url 'Nosotros' %}">Sobre Nosotros</a></li>
+              <li class="search-bar">
+                <input
+                  type="text"
+                  placeholder="¿Qué buscas?"
+                  class="form-control"
+                />
+              </li>
+              {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'perfil' %}"></a>
+                <ul>
+                  <li><a href="{% url 'productos' %}">Inventario</a></li>
+                  <li><a href="{% url 'listar_boletas' %}">Boletas</a></li>
+                  <li><a href="{% url 'cerrar' %}">Cerrar sesión</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'carrito' %}"></a></li>
+              {% else %}
+              <li><a href="{% url 'login' %}"></a></li>
+              <li><a href="{% url 'carrito' %}"></a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+</header>
   <div style="max-width: 600px; margin: 0 auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
-    
+
     <h2 style="color: #007bff; text-align: center;">¡Gracias por tu compra! 🎉</h2>
     <p style="text-align: center;">Boleta <strong>#{{ boleta.id_boleta }}</strong> emitida el <strong>{{ fecha }}</strong></p>
 
