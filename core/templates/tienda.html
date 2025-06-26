@@ -188,7 +188,8 @@
                 <ul class="pagination justify-content-center">
                     {% if planta.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page=1{% if request.GET.buscar %}&buscar={{ request.GET.buscar }}{% endif %}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}" aria-label="Primero">
+                            <a class="page-link" href="?page=1{% if request.GET.buscar %}&buscar={{ request.GET.buscar }}{% endif %}
+                                {% if request.GET.categoria %}&categoria={{request.GET.categoria }}{% endif %}" aria-label="Primero">
                                 <span aria-hidden="true">&laquo;&laquo;</span> Primero
                             </a>
                         </li>
@@ -265,55 +266,62 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script>
+        function cambiarMoneda() {
+            let monedaSeleccionada = document.getElementById('currency').value;
+            localStorage.setItem('moneda', monedaSeleccionada);
+            actualizarPrecios(monedaSeleccionada);
+        }
+
+        function actualizarPrecios(moneda) {
+            const precios = document.querySelectorAll('.precio');
+            if (moneda === 'USD') {
+                fetch('/api/tasa-cambio/')
+                    .then(response => response.json())
+                    .then(data => {
+                        let tasaCambio = data.tasa_cambio;
+                        precios.forEach(function(precioElement) {
+                            let precioCLP = parseFloat(precioElement.dataset.precioClp);
+                            let precioUSD = precioCLP / tasaCambio;
+                            precioElement.innerText = `$${precioUSD.toFixed(2)} USD`;
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Error al obtener la tasa de cambio:', err);
+                    });
+            } else {
+                precios.forEach(function(precioElement) {
+                    let precioCLP = precioElement.dataset.precioClp;
+                    precioElement.innerText = `$${parseInt(precioCLP).toLocaleString('es-CL')} CLP`;
+                });
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const openPanelLink = document.getElementById('openPanelLink');
             const closeBtn = document.getElementById('closeBtn');
             const sidePanel = document.getElementById('sidePanel');
+            const currencySelect = document.getElementById('currency');
 
-            openPanelLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                sidePanel.style.right = '0';
-            });
-
-            closeBtn.addEventListener('click', function() {
-                sidePanel.style.right = '-350px';
-            });
-
-            let monedaSeleccionada = localStorage.getItem('moneda') || 'CLP';
-            document.getElementById('currency').value = monedaSeleccionada;
-            actualizarPrecios(monedaSeleccionada);
-
-            window.cambiarMoneda = function() {
-                monedaSeleccionada = document.getElementById('currency').value;
-                localStorage.setItem('moneda', monedaSeleccionada);
-                actualizarPrecios(monedaSeleccionada);
+            if (openPanelLink) {
+                openPanelLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidePanel.style.right = '0';
+                });
             }
 
-            function actualizarPrecios(moneda) {
-                const precios = document.querySelectorAll('.precio');
-                if (moneda === 'USD') {
-                    fetch('/api/tasa-cambio/')
-                        .then(response => response.json())
-                        .then(data => {
-                            let tasaCambio = data.tasa_cambio;
-                            precios.forEach(function(precioElement) {
-                                let precioCLP = parseFloat(precioElement.dataset.precioClp);
-                                let precioUSD = precioCLP / tasaCambio;
-                                precioElement.innerText = `$${precioUSD.toFixed(2)} USD`;
-                            });
-                        })
-                        .catch(err => {
-                            console.error('Error al obtener la tasa de cambio:', err);
-                        });
-                } else {
-                    precios.forEach(function(precioElement) {
-                        let precioCLP = precioElement.dataset.precioClp;
-                        precioElement.innerText = `$${parseInt(precioCLP).toLocaleString('es-CL')} CLP`;
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    sidePanel.style.right = '-350px';
+                });
+            }
 
-                    });
-                }
+            if (currencySelect) {
+                let monedaSeleccionada = localStorage.getItem('moneda') || 'CLP';
+                currencySelect.value = monedaSeleccionada;
+                actualizarPrecios(monedaSeleccionada);
             }
         });
     </script>
+
 </body>
 </html>

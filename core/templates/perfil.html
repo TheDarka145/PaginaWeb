@@ -97,13 +97,23 @@ main {
     </header>
     
     <main>
-      <div class="perfil-container" style="color: #365b2d;">
+      <div class="perfil-container" style="color: #2C3E50;">
         <h1>Datos del usuario</h1>
+        <div class="text-center mb-3">
+          <img
+            src="https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+            alt="Icono de perfil"
+            class="img-fluid rounded-circle"
+            style="max-width: 100px;"
+          />
+        </div>
         <p><strong>Usuario:</strong> {{ usuario }}</p>
         <p><strong>Email:</strong> {{ email }}</p>
         <p><strong>Nombre:</strong> {{ nombre }}</p>
         <p><strong>Apellido:</strong> {{ apellido }}</p>
-        <a href="{% url 'editar' %}" class="btn btn-outline-success">Editar perfil</a>
+        <div class="text-center">
+         <a href="{% url 'editar' %}" style="padding: 8px 16px; border: none; background-color: #1A5276; color: white; border-radius: 5px; cursor: pointer;">Editar perfil</a>
+        </div>
       </div>
     </main>
     

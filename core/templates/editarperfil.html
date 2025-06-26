@@ -92,30 +92,37 @@
             </div>
         </header>
 
-        <div class="container">
+        <div class="container" >
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
                     <div class="card-header">
-                        <div class="card-body">
-                            <h2 class="text-center mb-4" style="color: #365b2d">
+                        <div class="card-body" >
+                            <h2 class="text-center mb-4" style="color: #2C3E50">
                                 Editar Perfil
                             </h2>
+                            <div class="text-center mb-3">
+                              <img
+                                src="https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+                                alt="Icono de perfil"
+                                class="img-fluid rounded-circle"
+                                style="max-width: 100px;"
+                              />
+                            </div>
                             <form
                                 method="post"
                                 class="needs-validation"
-                                novalidate
+                                novalidate"
                             >
                                 {% csrf_token %}
 
                                 <div class="form-group text-center">
                                     {{ form.username.label_tag }}
                                     <div>{{ form.username }}</div>
-                                    {% if form.username.errors %} {% for error
-                                    in form.username.errors %}
-                                    <small class="text-danger"
-                                        >{{ error }}</small
-                                    >
-                                    {% endfor %} {% endif %}
+                                    {% if form.username.errors %}
+                                        {% for error in form.username.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
 
                                 <div class="form-group text-center">
@@ -131,17 +138,16 @@
                                 <div class="form-group text-center">
                                     {{ form.email.label_tag }}
                                     <div>{{ form.email }}</div>
-                                    {% if form.email.errors %} {% for error in
-                                    form.email.errors %}
-                                    <small class="text-danger"
-                                        >{{ error }}</small
-                                    >
-                                    {% endfor %} {% endif %}
+                                    {% if form.email.errors %}
+                                        {% for error in form.email.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <div class="text-center">
                                     <button
                                         type="submit"
-                                        class="btn btn-outline-success"
+                                        style="padding: 8px 16px; border: none; background-color: #1A5276; color: white; border-radius: 5px; cursor: pointer;"
                                     >
                                         Guardar cambios
                                     </button>
@@ -155,64 +161,55 @@
 
         <br />
         <br />
-        <br />
 
         <footer class="pie-pagina">
-            <div class="grupo-1">
-                <div class="box">
-                    <figure>
-                        <a href="#">
-                            <img src="{% static 'img/foter.jpg' %}" alt="" />
-                        </a>
-                    </figure>
-                </div>
-                <div class="box">
-                    <h2>SOBRE NOSOTROS</h2>
-                    <p>
-                        Somos un grupo de vecinos unidos por un mismo propósito.
-                        Ayudar a nuestra comunidad y al medio ambiente.
-                        Comenzamos nuestra iniciativa vendiendo productos para
-                        jardinería a través de las redes sociales, con el
-                        objetivo de recaudar fondos para una fundación sin fines
-                        de lucro.
-                    </p>
-                </div>
-                <div class="box">
-                    <h2>SÍGUENOS</h2>
-                    <div class="red-social">
-                        <a href="#">
-                            <img
-                                src="{% static 'img/facebook_logo.png' %}"
-                                alt="facebook_logo"
-                                width="25px"
-                                height="25px"
-                            />
-                        </a>
-                        <a href="#">
-                            <img
-                                src="{% static 'img/ig_logo.png' %}"
-                                alt="ig_logo"
-                                width="25px"
-                                height="25px"
-                            />
-                        </a>
-                        <a href="#">
-                            <img
-                                src="{% static 'img/correo_logo.png' %}"
-                                alt="correo_logo"
-                                width="25px"
-                                height="25px"
-                            />
-                        </a>
-                    </div>
-                </div>
+          <div class="grupo-1">
+            <div class="box">
+              <figure>
+                <a href="#"
+                  ><img src="{% static 'img/footer.png' %}" alt="Logo footer"
+                /></a>
+              </figure>
             </div>
-            <div class="grupo-2">
-                <small
-                    >©2025 <b>FERRAMAS</b> - Todos Los Derechos
-                    Reservados</small
-                >
+            <div class="box">
+              <h2>SOBRE NOSOTROS</h2>
+              <p>
+                Somos una ferretería comprometida con el progreso de nuestra
+                comunidad. Iniciamos como un pequeño negocio familiar, y gracias a
+                la confianza de nuestros clientes, hoy contamos con un catálogo
+                amplio y un equipo preparado para ayudarte.
+              </p>
             </div>
+            <div class="box">
+              <h2>SÍGUENOS</h2>
+              <div class="red-social">
+                <a href="#"
+                  ><img
+                    src="{% static 'img/facebook_logo.png' %}"
+                    alt="Facebook"
+                    width="25"
+                    height="25"
+                /></a>
+                <a href="#"
+                  ><img
+                    src="{% static 'img/ig_logo.png' %}"
+                    alt="Instagram"
+                    width="25"
+                    height="25"
+                /></a>
+                <a href="#"
+                  ><img
+                    src="{% static 'img/correo_logo.png' %}"
+                    alt="Correo"
+                    width="25"
+                    height="25"
+                /></a>
+              </div>
+            </div>
+          </div>
+          <div class="grupo-2">
+            <small>©2025 <b>FERRAMAS</b> - Todos Los Derechos Reservados</small>
+          </div>
         </footer>
     </body>
 </html>

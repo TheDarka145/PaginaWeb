@@ -333,7 +333,7 @@ def redirigir_a_webpay(request):
             buy_order=str(randint(100000, 999999)),
             session_id=str(randint(100000, 999999)),
             amount=total,
-            return_url='http://localhost:8000/webpay/respuesta/'  
+            return_url='https://56c92eb4-6fb3-4986-a4ec-bf1e200abad0-00-dn6zyxf59efw.janeway.replit.dev/webpay/respuesta/'  
         )
         return render(request, 'webpay_redirigir.html', {
             'url': response['url'],

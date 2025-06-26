@@ -149,114 +149,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if request.session.carrito %} {% for key, value in
-                        request.session.carrito.items %}
-                        <tr
-                            style="
-                                background-color: #fff;
-                                border-bottom: 2px solid #e1e1e1;
-                            "
-                        >
-                            <td
-                                style="
-                                    font-size: 16px;
-                                    color: #1a5276;
-                                    font-weight: bold;
-                                    text-align: center;
-                                    padding: 15px;
-                                "
-                            >
-                                {{ value.nombre }}
-                            </td>
-                            <td
-                                style="
-                                    font-size: 16px;
-                                    color: #1a5276;
-                                    font-weight: bold;
-                                    text-align: center;
-                                    padding: 15px;
-                                "
-                            >
-                                {% if request.session.moneda == 'USD' %} ${{
-                                value.precio|floatformat:2 }} USD {% else %} ${{
-                                value.precio|floatformat:0 }} CLP {% endif %}
-                            </td>
-                            <td
-                                style="
-                                    font-size: 16px;
-                                    color: #1a5276;
-                                    font-weight: bold;
-                                    text-align: center;
-                                    padding: 15px;
-                                "
-                            >
-                                {{ value.cantidad }}<br />
-                                <a
-                                    href="{% url 'agregar' value.planta_id %}"
-                                    class="badge badge-light"
-                                    style="
-                                        background-color: #1a5276;
-                                        color: white;
-                                        padding: 5px 10px;
-                                        border-radius: 20px;
-                                        text-decoration: none;
-                                    "
-                                    >+</a
-                                >
-                                <a
-                                    href="{% url 'restar' value.planta_id %}"
-                                    class="badge badge-light"
-                                    style="
-                                        background-color: #34495e;
-                                        color: white;
-                                        padding: 5px 10px;
-                                        border-radius: 20px;
-                                        text-decoration: none;
-                                    "
-                                    >-</a
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td
-                                colspan="2"
-                                style="
-                                    text-align: right;
-                                    font-weight: bold;
-                                    color: #1a5276;
-                                "
-                            >
-                                Subtotal:
-                            </td>
-                            <td
-                                style="
-                                    text-align: center;
-                                    font-weight: bold;
-                                    color: #1a5276;
-                                "
-                            >
-                                {% if request.session.moneda == 'USD' %} ${{
-                                value.total|floatformat:2 }} USD {% else %} ${{
-                                value.total|floatformat:0 }} CLP {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %} {% else %}
-                        <tr>
-                            <td colspan="3">
-                                <div
-                                    class="alert alert-info text-center"
-                                    style="
-                                        font-weight: bold;
-                                        background-color: #d1e7dd;
-                                        color: #0f5132;
-                                    "
-                                >
-                                    Sin productos en el carrito
-                                </div>
-                            </td>
-                        </tr>
+                        {% if request.session.carrito %}
+                            {% for value in request.session.carrito.values %}
+                            <tr style="background-color: #fff; border-bottom: 2px solid #e1e1e1;">
+                                <td style="font-size: 16px; color: #1a5276; font-weight: bold; text-align: center; padding: 15px;">
+                                    {{ value.nombre }}
+                                </td>
+                                <td style="font-size: 16px; color: #1a5276; font-weight: bold; text-align: center; padding: 15px;">
+                                    {% if request.session.moneda == 'USD' %}
+                                        ${{ value.precio|floatformat:2 }} USD
+                                    {% else %}
+                                        ${{ value.precio|floatformat:0 }} CLP
+                                    {% endif %}
+                                </td>
+                                <td style="font-size: 16px; color: #1a5276; font-weight: bold; text-align: center; padding: 15px;">
+                                    {{ value.cantidad }}<br />
+                                    <a href="{% url 'agregar' value.planta_id %}" class="badge badge-light" style="background-color: #1a5276; color: white; padding: 5px 10px; border-radius: 20px; text-decoration: none;">+</a>
+                                    <a href="{% url 'restar' value.planta_id %}" class="badge badge-light" style="background-color: #34495e; color: white; padding: 5px 10px; border-radius: 20px; text-decoration: none;">-</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: right; font-weight: bold; color: #1a5276;">
+                                    Subtotal:
+                                </td>
+                                <td style="text-align: center; font-weight: bold; color: #1a5276;">
+                                    {% if request.session.moneda == 'USD' %}
+                                        ${{ value.total|floatformat:2 }} USD
+                                    {% else %}
+                                        ${{ value.total|floatformat:0 }} CLP
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3">
+                                    <div class="alert alert-info text-center" style="font-weight: bold; background-color: #d1e7dd; color: #0f5132;">
+                                        Sin productos en el carrito
+                                    </div>
+                                </td>
+                            </tr>
                         {% endif %}
                     </tbody>
+
                 </table>
             </div>
             <hr style="border-top: 1px solid #e1e1e1" />
